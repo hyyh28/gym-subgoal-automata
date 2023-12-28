@@ -6,6 +6,19 @@ prompt = PromptTemplate.from_template("What is a good name for a company that ma
 message = prompt.format(product="colorful socks")
 print(message)
 
+Task_descriptions = {
+    'MakePlank': 'MakePlank: Craft a plank using wood and a toolshed.',
+    'MakeStick': 'MakeStick: Create a stick using wood and a workbench.',
+    'MakeCloth': 'MakeCloth: Produce cloth from grass at a factory.',
+    'MakeRope': 'MakeRope: Convert grass into rope at a toolshed.',
+    'MakeShears': 'MakeShears: Combine iron and wood to make shears at a workbench, with any observation order.',
+    'MakeBridge': 'MakeBridge: Assemble a bridge with iron and wood at a factory, in any observation order.',
+    'GetGold': 'GetGold: Obtain gold by processing iron and wood at a factory, with a bridge built in any order.',
+    'MakeBed': 'MakeBed: Manufacture a bed using wood, toolshed, grass, and workbench, observing grass before workbench.',
+    'MakeAxe': 'MakeAxe: Craft an axe with wood, workbench, iron, and toolshed, observing iron before toolshed.',
+    'GetGem': 'GetGem: Acquire a gem by interacting with wood, workbench, iron, toolshed, and an axe, sequencing iron before the toolshed.'
+}
+
 
 class CraftWorldEnvPrompt():
     def __init__(self, task_name):
@@ -34,12 +47,17 @@ class CraftWorldEnvPrompt():
                                                      "machine reaches a terminal state. Note that reward machines can " \
                                                      "model never-ending tasks by defining $F = \emptyset$. "
 
-        self.env_description = "The Craft World environment is a 2-D, Minecraft-inspired world with a 39x39 " \
-                                      "grid, where an agent collects raw materials (wood, grass, iron) and interacts " \
-                                      "with tools/workstations (toolshed, workbench, factory, bridge, axe) across a " \
-                                      "set number of labeled locations. The goal-oriented tasks involve crafting " \
-                                      "items like planks, sticks, cloth, and bridges, with the agent receiving a " \
-                                      "reward of 1 for successful completions while moving in the four cardinal " \
-                                      "directions within the grid. "
-        self.task_name = task_name
-        self.task_description_prompt = PromptTemplate.from_template("")
+        self.env_description = "The Craft World environment is a 2D, Minecraft-inspired world with a 39x39 " \
+                               "grid, where an agent collects raw materials (wood, grass, iron) and interacts " \
+                               "with tools/workstations (toolshed, workbench, factory, bridge, axe) across a " \
+                               "set number of labeled locations. The goal-oriented tasks involve crafting " \
+                               "items like planks, sticks, cloth, and bridges, with the agent receiving a " \
+                               "reward of 1 for successful completions while moving in the four cardinal " \
+                               "directions within the grid. "
+        self.goal_description = "Craft a range of items within the world using distinct raw materials and " \
+                                "workstations while following appropriate sequences for item interactions. "
+
+        self.task_description = Task_descriptions[task_name]
+
+    def few_shot_example_initization(self, path=None):
+
