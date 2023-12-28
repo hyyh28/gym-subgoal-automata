@@ -354,7 +354,7 @@ if __name__ == "__main__":
     dfa.add_edge("u1", "uA", ["g"])
     dfa.add_edge("u1", "uR", ["n", "~g"])
 
-    # dfa.plot(".", "output.png")
+    dfa.plot("./output", "output.png")
 
     print("(u0, [f]) -->", dfa.get_next_state("u0", ["f"]))
     print("(u0, [a]) -->", dfa.get_next_state("u0", ["a"]))

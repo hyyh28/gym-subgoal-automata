@@ -1,0 +1,11 @@
+digraph G {
+u0 [label="u0"];
+u1 [label="u1"];
+uA [label="uA"];
+uR [label="uR"];
+u0 -> u1 [label="f&~g"];
+u0 -> uA [label="f&g"];
+u0 -> uR [label="n&~f&~g"];
+u1 -> uA [label="g"];
+u1 -> uR [label="n&~g"];
+}
